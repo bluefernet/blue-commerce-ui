@@ -43,6 +43,10 @@
             .then(function (response) {
                 //resultElement.innerHTML = generateSuccessHTMLOutput(response);
                 alert('response ' + response)
+                let products = JSON.stringify(response.data)
+                console.log(products)
+                console.log(products[0])
+                console.log(products[0].id)
             })
             .catch(function (error) {
                 //resultElement.innerHTML = generateErrorHTMLOutput(error);
