@@ -165,8 +165,8 @@
         let productsPanel = document.getElementById('getProducts');
         for (let i = 0; i < products.length; i++) {
             const product = products[i];
-            createProductCard(product)
-            productsPanel.appendChild(productGridItem)
+            cardProduct = createProductCard(product)
+            productsPanel.appendChild(cardProduct)
         }
     }
 
