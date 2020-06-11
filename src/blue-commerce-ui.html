@@ -39,7 +39,7 @@
         var resultElement = document.getElementById('getProducts');
         resultElement.innerHTML = '';
 
-        axios.get('http://blue-commerce-service.now.sh/v1/products')
+        axios.get('https://blue-commerce-service.now.sh/v1/products')
             .then(function (response) {
                 resultElement.innerHTML = generateSuccessHTMLOutput(response);
             })
