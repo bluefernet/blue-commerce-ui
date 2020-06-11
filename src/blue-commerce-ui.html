@@ -41,10 +41,12 @@
 
         axios.get('https://blue-commerce-service.now.sh/v1/products')
             .then(function (response) {
-                resultElement.innerHTML = generateSuccessHTMLOutput(response);
+                //resultElement.innerHTML = generateSuccessHTMLOutput(response);
+                alert('response ' + response)
             })
             .catch(function (error) {
-                resultElement.innerHTML = generateErrorHTMLOutput(error);
+                //resultElement.innerHTML = generateErrorHTMLOutput(error);
+                alert('error ' + error)
             });
     }
 
