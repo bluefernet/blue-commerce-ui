@@ -8,8 +8,6 @@
         BlueCommerce
     </h1>
 </div>
-<div>
-</div>
 <h2>Carrello</h2>
 <div class="grid-container">
     <div class="grid-item">
@@ -130,7 +128,6 @@
 <script>
     async function getProdotti() {
         let response = await getRequest('https://blue-commerce-service.now.sh/v1/products')
-        console.log(response)
         let products = response.products
         console.log(products)
         showProducts(products)
@@ -146,7 +143,6 @@
             console.log(order)
         }
     }
-
 
     async function getRequest(url) {
         let response = await axios.get(url);
@@ -183,11 +179,12 @@
         title.innerHTML = product.name
         productCardImage.src = 'https://source.unsplash.com/collection/9959060/1600x900'
         productCardImage.style = 'width:100%'
+
+
         productContainer.appendChild(title)
         productContainer.appendChild(productDescription)
         productContainer.appendChild(productLabel)
         productCard.appendChild(productCardImage)
-
         productCard.appendChild(productContainer)
         productGridItem.appendChild(productCard)
 
@@ -195,17 +192,16 @@
 
     }
 
-    var btnPrd1 = document.getElementById('btnPrd1')
-    btnPrd1.addEventListener('onclick', increment)
     function increment(element) {
-        var btnPrd1 = document.getElementById(element)
         var qta = document.getElementById('qta' + element.id.substring(3))
         qta.textContent = parseInt(qta.textContent) + 1
     }
 
     function decrement() {
-        var product = document.getElementById('productSelection');
-        product.textContent = parseInt(product.textContent) - 1
+        var qta = document.getElementById('qta' + element.id.substring(3))
+        if (parseInt(qta.textContent) > 0) {
+            qta.textContent = parseInt(qta.textContent) - 1
+        }
     }
 
     function calcoloCarrello() {
@@ -224,7 +220,6 @@
         }
         alert(totalCart)
     }
-
 </script>
 
 <style>
