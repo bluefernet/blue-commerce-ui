@@ -45,8 +45,8 @@
                 alert('response ' + response)
                 let products = JSON.parse(JSON.stringify(response.data))
                 console.log(products)
-                console.log(products[0])
-                console.log(products[0].id)
+                console.log(products.products)
+                console.log(products.products[0])
             })
             .catch(function (error) {
                 //resultElement.innerHTML = generateErrorHTMLOutput(error);
