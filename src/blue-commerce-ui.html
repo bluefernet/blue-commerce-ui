@@ -28,7 +28,9 @@
 <script>
     function getProdotti() {
         let response = getRequest('https://blue-commerce-service.now.sh/v1/products')
+        console.log(response)
         let products = response.products
+        console.log(products)
         for (let i = 0; i < products.length; i++) {
             const product = products[i];
             console.log(product)
@@ -37,7 +39,9 @@
 
     function getOrdini() {
         let response = getRequest('https://blue-commerce-service.now.sh/v1/orders')
+        console.log(response)
         let orders = response.orders
+        console.log(orders)
         for (let i = 0; i < orders.length; i++) {
             const order = orders[i];
             console.log(order)
@@ -47,19 +51,18 @@
     function getRequest(url) {
         var resultElement = document.getElementById('getProducts');
         resultElement.innerHTML = '';
-
-        let response = axios.get(url)
+        let responseJSON;
+        axios.get(url)
             .then(function (response) {
                 //resultElement.innerHTML = generateSuccessHTMLOutput(response);
-                alert('response ' + response)
-                let data = JSON.parse(JSON.stringify(response.data))
-                return data
+                responseJSON = JSON.parse(JSON.stringify(response.data))
             })
             .catch(function (error) {
                 //resultElement.innerHTML = generateErrorHTMLOutput(error);
                 alert('error ' + error)
             });
-        return response
+        console.log('response ' + responseJSON)
+        return responseJSON
     }
 
 </script>
