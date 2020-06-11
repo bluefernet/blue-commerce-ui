@@ -3,25 +3,132 @@
 <head>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
-<div>
+<div class="header">
     <h1>
         BlueCommerce
     </h1>
 </div>
 <div>
-    <button onclick="getProdotti()">
-        PRODOTTI
-    </button>
-    <div class="panel" id="getProducts">
-
-    </div>
-    <button onclick="getOrdini()">
-        ORDINI
-    </button>
-    <div class="panel" id="getOrders">
-
-    </div>
 </div>
+<div class="content">
+    <h2>Carrello</h2>
+    <div class="grid-container">
+        <div class="grid-item">
+            <div class="card" id="Prd1">
+                <img src="https://source.unsplash.com/user/erondu/1600x900" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Prodotto 1</b></h4>
+                    <p>Descrizione Prodotto: Lorem Ipsum</p>
+                    <div>
+                        <p>Prezzo: 25$</p>
+                        <span hidden id="przPrd1">25</span>
+                    </div>
+
+                    <button onclick="increment(this)" id="btnPrd1">
+                        +
+                    </button>
+                    <button onclick="decrement()">
+                        -
+                    </button>
+                    <div>
+                        <span id="qtaPrd1">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="card" id="Prd2">
+                <img src="https://source.unsplash.com/user/erondu/1600x900" alt="Avatar" style="width:100%">
+                <div class="container">
+                    <h4><b>Prodotto 2</b></h4>
+                    <p>Descrizione Prodotto: Lorem Ipsum</p>
+
+                    <div>
+                        <p>Prezzo: 5$</p>
+                        <span hidden id="przPrd2">5</span>
+                    </div>
+
+                    <button onclick="increment(this)" id="btnPrd2">
+                        +
+                    </button>
+                    <button onclick="decrement()">
+                        -
+                    </button>
+                    <div>
+                        <span id="qtaPrd2">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="grid-item">
+                <div class="card" id="Prd3">
+                    <img src="https://source.unsplash.com/user/erondu/1600x900" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>Prodotto 3</b></h4>
+                        <p>Descrizione Prodotto: Lorem Ipsum</p>
+                        <div>
+                            <label>Prezzo: 11$</label>
+                            <span hidden id="przPrd3">11</span>
+                        </div>
+
+                        <button onclick="increment(this)" id="btnPrd3">
+                            +
+                        </button>
+                        <button onclick="decrement()">
+                            -
+                        </button>
+                        <div>
+                            <span id="qtaPrd3">0</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <div class="grid-item">
+                <div class="card" id="Prd4">
+                    <img src="https://source.unsplash.com/user/erondu/1600x900" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4><b>Prodotto 4</b></h4>
+                        <p>Lorem Ipsum</p>
+                        <div>
+                            <label>Prezzo: 17$</label>
+                            <span hidden id="przPrd4">17</span>
+                        </div>
+
+                        <button onclick="increment(this)" id="btnPrd4">
+                            +
+                        </button>
+                        <button onclick="decrement()">
+                            -
+                        </button>
+                        <div>
+                            <span id="qtaPrd4">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <button class="button-com" onclick="calcoloCarrello()">
+        Totale Ordine
+    </button>
+    <button class="button-com" onclick="getProdotti()">
+        Prodotti
+    </button>
+
+</div>
+
+<div class="panel" id="getOrders">
+
+</div>
+
 
 </html>
 
@@ -49,10 +156,122 @@
     }
 
     async function getRequest(url) {
+
         var resultElement = document.getElementById('getProducts');
         resultElement.innerHTML = '';
         let response = await axios.get(url);
         return JSON.parse(JSON.stringify(response.data))
     }
 
+    function showProducts() {
+        var resultElement = document.getElementById('getProducts');
+        resultElement.innerHTML = createPanelProducts();
+    }
+
+    function createPanelProducts() {
+        select = '<select name="cars" id="cars">'
+        let selectC = document.createElement('select');
+        let optionsC = document.createElement('option')
+        optionsC.value = ['Prodotto 1', 'Prodotto 2']
+        optionsC.text = ['Prodotto 1', 'Prodotto 2']
+
+        selectC.appendChild(optionsC)
+        optionsC.value = ['Prodotto 3', 'Prodotto 4']
+        optionsC.text = ['Prodotto 4', 'Prodotto 3']
+        selectC.appendChild(optionsC)
+        document.body.appendChild(selectC)
+
+
+        let options;
+        let k = 0
+        while (k < 5) {
+            options += '<option value=' + k + '>' + k + '</option>'
+            k++
+        }
+        select += options + '</select>'
+        return '<h4>Result</h4>' +
+            '<h5>Status:</h5> ' +
+            select
+    }
+
+    var btnPrd1 = document.getElementById('btnPrd1')
+    btnPrd1.addEventListener('onclick', increment)
+    function increment(element) {
+        var btnPrd1 = document.getElementById(element)
+        var qta = document.getElementById('qta' + element.id.substring(3))
+        qta.textContent = parseInt(qta.textContent) + 1
+    }
+
+    function decrement() {
+        var product = document.getElementById('productSelection');
+        product.textContent = parseInt(product.textContent) - 1
+    }
+
+    function calcoloCarrello() {
+        let cartProducts = document.getElementsByClassName('card')
+        let totalCart = 0
+        for (let i = 0; i < cartProducts.length; i++) {
+            const elementId = cartProducts.item(i).id;
+            console.log(elementId)
+            const elementQta = document.getElementById('qta' + elementId)
+            const elementPrz = document.getElementById('prz' + elementId)
+            console.log(elementPrz)
+            console.log(elementQta)
+            totalCart += parseInt(elementQta.textContent) * parseInt(elementPrz.textContent)
+
+        }
+        alert(totalCart)
+
+    }
+
 </script>
+
+<style>
+    .header {
+        padding: 60px;
+        text-align: center;
+        background: #376dc4;
+        color: white;
+        font-size: 30px;
+    }
+
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        width: 40%;
+    }
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        padding: 75px;
+        margin: auto;
+    }
+
+    .grid-item {
+        text-align: center;
+        padding-bottom: 10px;
+    }
+
+    .button-com {
+        font-size: 16pt;
+        background-color: #274e8c;
+        border: none;
+        color: #FFFFFF;
+        padding: 20px 75px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0px 25px;
+        cursor: pointer;
+        border-radius: 12px;
+    }
+</style>
