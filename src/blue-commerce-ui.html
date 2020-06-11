@@ -108,11 +108,7 @@
             </div>
         </div>
     </div>
-
 </div>
-
-
-
 <div>
     <button class="button-com" onclick="calcoloCarrello()">
         Totale Ordine
@@ -218,15 +214,15 @@
         for (let i = 0; i < cartProducts.length; i++) {
             const elementId = cartProducts.item(i).id;
             console.log(elementId)
-            const elementQta = document.getElementById('qta' + elementId)
-            const elementPrz = document.getElementById('prz' + elementId)
-            console.log(elementPrz)
-            console.log(elementQta)
-            totalCart += parseInt(elementQta.textContent) * parseInt(elementPrz.textContent)
-
+            if (elementId != null && elementId != undefined && elementId != '') {
+                const elementQta = document.getElementById('qta' + elementId)
+                const elementPrz = document.getElementById('prz' + elementId)
+                console.log(elementPrz)
+                console.log(elementQta)
+                totalCart += parseInt(elementQta.textContent) * parseInt(elementPrz.textContent)
+            }
         }
         alert(totalCart)
-
     }
 
 </script>
