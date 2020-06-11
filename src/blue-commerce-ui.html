@@ -48,7 +48,7 @@
         var resultElement = document.getElementById('getProducts');
         resultElement.innerHTML = '';
 
-        axios.get(url)
+        let response = axios.get(url)
             .then(function (response) {
                 //resultElement.innerHTML = generateSuccessHTMLOutput(response);
                 alert('response ' + response)
@@ -59,6 +59,7 @@
                 //resultElement.innerHTML = generateErrorHTMLOutput(error);
                 alert('error ' + error)
             });
+        return response
     }
 
 </script>
