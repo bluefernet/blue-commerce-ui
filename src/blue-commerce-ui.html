@@ -24,7 +24,7 @@
                 <button onclick="increment(this)" id="btnPrd1">
                     +
                 </button>
-                <button onclick="decrement()">
+                <button onclick="decrement(this)">
                     -
                 </button>
                 <div>
@@ -48,7 +48,7 @@
                 <button onclick="increment(this)" id="btnPrd2">
                     +
                 </button>
-                <button onclick="decrement()">
+                <button onclick="decrement(this)">
                     -
                 </button>
                 <div>
@@ -72,7 +72,7 @@
                 <button onclick="increment(this)" id="btnPrd3">
                     +
                 </button>
-                <button onclick="decrement()">
+                <button onclick="decrement(this)">
                     -
                 </button>
                 <div>
@@ -97,7 +97,7 @@
                 <button onclick="increment(this)" id="btnPrd4">
                     +
                 </button>
-                <button onclick="decrement()">
+                <button onclick="decrement(this)">
                     -
                 </button>
                 <div>
@@ -180,7 +180,6 @@
         productCardImage.src = 'https://source.unsplash.com/collection/9959060/1600x900'
         productCardImage.style = 'width:100%'
 
-
         productContainer.appendChild(title)
         productContainer.appendChild(productDescription)
         productContainer.appendChild(productLabel)
@@ -189,7 +188,6 @@
         productGridItem.appendChild(productCard)
 
         return productGridItem
-
     }
 
     function increment(element) {
@@ -197,7 +195,7 @@
         qta.textContent = parseInt(qta.textContent) + 1
     }
 
-    function decrement() {
+    function decrement(element) {
         var qta = document.getElementById('qta' + element.id.substring(3))
         if (parseInt(qta.textContent) > 0) {
             qta.textContent = parseInt(qta.textContent) - 1
